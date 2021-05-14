@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cat /etc/passwd | cut -d: -f1 | grep "guest" | grep -v "prefs" > list
+
+clear
+
+cat list
+
+sleep 5
+
+clear
+
+cat list | while read user
+do
+        echo "Deleting: ${user}"
+        sudo userdel -r "${user}"
+done
+
+rm list
+
+sleep 3 
+
+clear
